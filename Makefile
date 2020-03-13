@@ -8,7 +8,8 @@ endif
 # -------------------------------------------------------------------------------------------------
 
 DIR = Dockerfiles
-IMAGE = devilbox/php-fpm
+# IMAGE = devilbox/php-fpm
+IMAGE = grengojbo/php-fpm
 NO_CACHE =
 PHP_EXT_DIR =
 
@@ -67,6 +68,20 @@ help:
 	@echo "ARGS                          Can be added to all build-* and rebuild-* targets"
 	@echo "                              to supply additional docker build options."
 
+connect-base: ## Connect to BASE container
+	@echo "Connect to BASE container..."
+	docker run --rm -v /home/jbo/src/gitops/laravel/app:/app -it $(IMAGE):$(VERSION)-base /bin/bash
+
+connect-mods:
+	docker run --rm -v /home/jbo/src/gitops/laravel/app:/app -it $(IMAGE):$(VERSION)-mods /bin/bash
+
+connect-dev:
+	docker run --rm -v /home/jbo/src/gitops/laravel/app:/app -it $(IMAGE):$(VERSION)-work /bin/bash
+
+connect-prod:
+	docker run --rm -v /home/jbo/src/gitops/laravel/app:/app -it $(IMAGE):$(VERSION)-prod /bin/bash
+
+# push-base:
 # -------------------------------------------------------------------------------------------------
 #  GENERATE TARGETS
 # -------------------------------------------------------------------------------------------------
