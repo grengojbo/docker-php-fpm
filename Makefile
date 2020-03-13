@@ -81,7 +81,10 @@ connect-dev:
 connect-prod:
 	docker run --rm -v /home/jbo/src/gitops/laravel/app:/app -it $(IMAGE):$(VERSION)-prod /bin/bash
 
-# push-base:
+push-base: ## Push BASE image
+	@echo "Push BASE image $(IMAGE):$(VERSION)-base ..."
+	@docker push $(IMAGE):$(VERSION)-base
+
 # -------------------------------------------------------------------------------------------------
 #  GENERATE TARGETS
 # -------------------------------------------------------------------------------------------------
