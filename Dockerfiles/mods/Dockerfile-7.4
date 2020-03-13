@@ -947,9 +947,9 @@ RUN set -eux \
 	&& php-fpm -m | grep -oiE '^yaml$' \
 	&& php -m | grep -oiE '^zip$' \
 	&& php-fpm -m | grep -oiE '^zip$' \
+	&& echo "--------------------------------------------------------" \
+	&& echo "EXT_DIR: ${EXT_DIR}" \
 	&& true
-&& echo "--------------------------------------------------------"
-&& echo "EXT_DIR: ${EXT_DIR}"
 
 
 ###
