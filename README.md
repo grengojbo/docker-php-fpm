@@ -10,11 +10,15 @@
 [![License](https://img.shields.io/badge/license-MIT-%233DA639.svg)](https://opensource.org/licenses/MIT)
 
 
+```
+EXT_DIR: /usr/local/lib/php/extensions/no-debug-non-zts-20190902
+```
+
 This repository will provide you fully functional PHP-FPM Docker images in different flavours,
 versions and packed with different types of integrated PHP modules. It also solves the problem of **[syncronizing file permissions](#unsynchronized-permissions)** of mounted volumes between the host and the container.
 
-| Docker Hub | Upstream Project |
-|------------|------------------|
+| Docker Hub                                                                                                                   | Upstream Project                                                                                                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | <a href="https://hub.docker.com/r/devilbox/php-fpm"><img height="82px" src="http://dockeri.co/image/devilbox/php-fpm" /></a> | <a href="https://github.com/cytopia/devilbox" ><img height="82px" src="https://raw.githubusercontent.com/devilbox/artwork/master/submissions_banner/cytopia/01/png/banner_256_trans.png" /></a> |
 
 #### Base Images
@@ -921,12 +925,12 @@ Have a look at the following table to see all offered exposed ports for each Doc
 Each PHP version is using the same sane default php.ini values, making it pain-free to switch versions and not having to worry about different php.ini settings.
 **Note:** Flavours alway inherit the settings from its parent flavour if they have no own configuration.
 
-| Flavour | Applied php.ini files|
-|---------|------------------------------------------|
+| Flavour | Applied php.ini files                                                                               |
+| ------- | --------------------------------------------------------------------------------------------------- |
 | base    | [php.ini](Dockerfiles/base/data/php-ini.d/) and [php-fpm.conf](Dockerfiles/base/data/php-fpm.conf/) |
-| mods    | inherits from base                       |
-| prod    | inherits from base                       |
-| work    | [php.ini](Dockerfiles/work/data/php-ini.d/) [php-fpm.conf](Dockerfiles/work/data/php-fpm.conf/) |
+| mods    | inherits from base                                                                                  |
+| prod    | inherits from base                                                                                  |
+| work    | [php.ini](Dockerfiles/work/data/php-ini.d/) [php-fpm.conf](Dockerfiles/work/data/php-fpm.conf/)     |
 
 
 

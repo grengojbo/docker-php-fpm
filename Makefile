@@ -87,7 +87,7 @@ push-base: ## Push base image by specified version
 
 push-mods: ## Push mods image by specified version
 	@echo "Push mods image by specified version $(IMAGE):$(VERSION)-mods ..."
-	@docker push $(IMAGE):$(VERSION)-base
+	@docker push $(IMAGE):$(VERSION)-mods
 
 # -------------------------------------------------------------------------------------------------
 #  GENERATE TARGETS
