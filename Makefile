@@ -81,8 +81,12 @@ connect-dev:
 connect-prod:
 	docker run --rm -v /home/jbo/src/gitops/laravel/app:/app -it $(IMAGE):$(VERSION)-prod /bin/bash
 
-push-base: ## Push BASE image
-	@echo "Push BASE image $(IMAGE):$(VERSION)-base ..."
+push-base: ## Push base image by specified version
+	@echo "Push base image by specified version $(IMAGE):$(VERSION)-base ..."
+	@docker push $(IMAGE):$(VERSION)-base
+
+push-mods: ## Push mods image by specified version
+	@echo "Push mods image by specified version $(IMAGE):$(VERSION)-mods ..."
 	@docker push $(IMAGE):$(VERSION)-base
 
 # -------------------------------------------------------------------------------------------------

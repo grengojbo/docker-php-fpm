@@ -24,7 +24,7 @@ RUN set -eux \
 	libib-util \
 	libicu-dev \
 	libjpeg-dev \
-	libldap2-dev \
+	# libldap2-dev \
 	libmagickwand-dev \
 	libmcrypt-dev \
 	# libmemcached-dev \
@@ -832,8 +832,8 @@ RUN set -eux \
 	&& php-fpm -m | grep -oiE '^intl$' \
 	&& php -m | grep -oiE '^json$' \
 	&& php-fpm -m | grep -oiE '^json$' \
-	&& php -m | grep -oiE '^ldap$' \
-	&& php-fpm -m | grep -oiE '^ldap$' \
+	# && php -m | grep -oiE '^ldap$' \
+	# && php-fpm -m | grep -oiE '^ldap$' \
 	&& php -m | grep -oiE '^libxml$' \
 	&& php-fpm -m | grep -oiE '^libxml$' \
 	&& php -m | grep -oiE '^mbstring$' \
@@ -948,6 +948,8 @@ RUN set -eux \
 	&& php -m | grep -oiE '^zip$' \
 	&& php-fpm -m | grep -oiE '^zip$' \
 	&& true
+&& echo "--------------------------------------------------------"
+&& echo "EXT_DIR: ${EXT_DIR}"
 
 
 ###
