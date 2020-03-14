@@ -29,13 +29,21 @@ RUN set -eux \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update -qq \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -qq -y --no-install-recommends --no-install-suggests apt-utils \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -qq -y --no-install-recommends --no-install-suggests \
-	locales-all \
+	#locales-all \
+	locales \
 	socat \
+	iputils-ping \
+	imagemagick \
+	&& echo "------------------- locale gen -------------------" \
+	&& locale-gen en_US.UTF-8 \
+	&& locale-gen uk_UA.UTF-8 \
+	&&locale-gen ru_RU.UTF-8 \
 	&& echo "-------------------- composer --------------------" \
 	&& curl -sS -L --fail https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 	\
-
 	&& DEBIAN_FRONTEND=noninteractive apt-get purge -qq -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false apt-utils \
+	&& apt-get autoclean -y && apt-get clean -y \
+	&& rm -fr /tmp/* /var/tmp/* \
 	&& rm -rf /var/lib/apt/lists/* \
 	\
 	&& (find /usr/local/bin -type f -print0 | xargs -n1 -0 strip --strip-all -p 2>/dev/null || true) \
