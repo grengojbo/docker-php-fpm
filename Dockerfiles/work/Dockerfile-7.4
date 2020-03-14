@@ -594,7 +594,7 @@ RUN set -eux \
 	&& yq --version 2>&1 | grep -E '^yq\s+[.0-9]+$' \
 	\
 	# -------------------- NPM --------------------
-	&& ng  version 2>&1 | grep -iE 'Angular CLI:\s*[.0-9]+' \
+	# && ng  version 2>&1 | grep -iE 'Angular CLI:\s*[.0-9]+' \
 	&& eslint -v | grep -E '[.0-9]+' \
 	&& grunt --version | grep -E '[.0-9]+' \
 	&& gulp --version | grep -E '[.0-9]+' \
