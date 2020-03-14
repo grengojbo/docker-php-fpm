@@ -31,9 +31,6 @@ DVL_PHP_INI_CONF_LOGFILE="${DVL_PHP_INI_DIR}/zzz-entrypoint-logfiles.ini"
 # PHP-FPM log dir
 DVL_FPM_LOG_DIR="/var/log/php"
 
-# This is the log file for any mail related functions
-DVL_PHP_MAIL_LOG="${DVL_FPM_LOG_DIR}/mail.log"
-
 # Custom ini dir (to be copied to actual ini dir)
 DVL_PHP_CUST_INI_DIR="/etc/php-custom.d"
 
@@ -101,53 +98,11 @@ set_docker_logs \
 
 
 ###
-### Setup postfix
-###
-if is_docker_logs_enabled "DOCKER_LOGS" >/dev/null; then
-	# PHP mail function should log to stderr
-	set_postfix "ENABLE_MAIL" "${MY_USER}" "${MY_GROUP}" "${DVL_PHP_INI_DIR}" "/proc/self/fd/2" "1" "${DEBUG_LEVEL}"
-else
-	# PHP mail function should log to file
-	set_postfix "ENABLE_MAIL" "${MY_USER}" "${MY_GROUP}" "${DVL_PHP_INI_DIR}" "${DVL_PHP_MAIL_LOG}" "0" "${DEBUG_LEVEL}"
-fi
-
-
-###
 ### Validate socat port forwards
 ###
 if ! port_forward_validate "FORWARD_PORTS_TO_LOCALHOST" "${DEBUG_LEVEL}"; then
 	exit 1
 fi
-
-
-###
-### Supervisor: socat
-###
-for line in $( port_forward_get_lines "FORWARD_PORTS_TO_LOCALHOST" ); do
-	lport="$( port_forward_get_lport "${line}" )"
-	rhost="$( port_forward_get_rhost "${line}" )"
-	rport="$( port_forward_get_rport "${line}" )"
-	supervisor_add_service \
-		"socat-${lport}-${rhost}-${rport}" \
-		"/usr/bin/socat tcp-listen:${lport},reuseaddr,fork tcp:${rhost}:${rport}" \
-		"${DVL_SUPERVISOR_CONFD}" \
-		"${DEBUG_LEVEL}"
-done
-
-
-###
-### Supervisor: rsyslogd & postfix
-###
-if [ "$( env_get "ENABLE_MAIL" )" = "1" ] || [ "$( env_get "ENABLE_MAIL" )" = "2" ]; then
-	supervisor_add_service "rsyslogd" "/usr/sbin/rsyslogd -n"      "${DVL_SUPERVISOR_CONFD}" "${DEBUG_LEVEL}" "1"
-	supervisor_add_service "postfix"  "/usr/local/sbin/postfix.sh" "${DVL_SUPERVISOR_CONFD}" "${DEBUG_LEVEL}"
-fi
-
-
-###
-### Supervisor: php-fpm
-###
-supervisor_add_service "php-fpm"  "/usr/local/sbin/php-fpm" "${DVL_SUPERVISOR_CONFD}" "${DEBUG_LEVEL}"
 
 
 ###
@@ -189,5 +144,5 @@ execute_custom_scripts "/startup.2.d" "${DEBUG_LEVEL}"
 ###
 ### Startup
 ###
-log "info" "Starting supervisord" "${DEBUG_LEVEL}"
+log "info" "Starting php-fpm" "${DEBUG_LEVEL}"
 exec "${@}"
