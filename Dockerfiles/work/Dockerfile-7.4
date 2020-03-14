@@ -127,8 +127,8 @@ RUN set -eux \
 ### Install custom software
 ###
 RUN set -eux \
-	echo	"-------------------- pip --------------------"
-&& DEBIAN_FRONTEND=noninteractive apt-get update -qq \
+	echo	"-------------------- pip --------------------" \
+	&& DEBIAN_FRONTEND=noninteractive apt-get update -qq \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -qq -y --no-install-recommends --no-install-suggests \
 	libpython-dev \
 	&& DEBIAN_FRONTEND=noninteractive apt-get purge -qq -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
