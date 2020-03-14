@@ -70,9 +70,9 @@ RUN set -eux \
 	&& if [ -n "${PHP_FPM_ERROR}" ]; then echo "${PHP_FPM_ERROR}"; false; fi \
 	&& rm -f /usr/local/etc/php/php.ini
 
-# COPY .data/install-gosu.sh /usr/local/bin/install-gosu.sh
-# RUN chmod 0777 /usr/local/bin/install-gosu.sh \
-# 	&& /usr/local/bin/install-gosu.sh
+COPY .data/install-gosu.sh /usr/local/bin/install-gosu.sh
+RUN chmod 0777 /usr/local/bin/install-gosu.sh \
+	&& /usr/local/bin/install-gosu.sh
 
 ###
 ### Copy files
