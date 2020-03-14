@@ -92,7 +92,9 @@ COPY ./data/docker-entrypoint.d/*.sh /docker-entrypoint.d/
 VOLUME /var/log/php
 # VOLUME /var/mail
 
-
+ENV LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
 
 ###
 ### Ports
