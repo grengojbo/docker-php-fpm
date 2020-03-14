@@ -62,21 +62,24 @@ RUN set -eux \
 	&& if [ -n "${PHP_FPM_ERROR}" ]; then echo "${PHP_FPM_ERROR}"; false; fi \
 	&& rm -f /usr/local/etc/php/php.ini
 
+# COPY .data/install-gosu.sh /usr/local/bin/install-gosu.sh
+# RUN chmod 0777 /usr/local/bin/install-gosu.sh \
+# 	&& /usr/local/bin/install-gosu.sh
 
 ###
 ### Copy files
 ###
 COPY ./data/docker-entrypoint.sh /docker-entrypoint.sh
 COPY ./data/docker-entrypoint.d/*.sh /docker-entrypoint.d/
-COPY ./data/postfix.sh /usr/local/sbin/postfix.sh
-COPY ./data/supervisord.conf /etc/supervisor/supervisord.conf
+# COPY ./data/postfix.sh /usr/local/sbin/postfix.sh
+# COPY ./data/supervisord.conf /etc/supervisor/supervisord.conf
 
 
 ###
 ### Volumes
 ###
 VOLUME /var/log/php
-VOLUME /var/mail
+# VOLUME /var/mail
 
 
 ###

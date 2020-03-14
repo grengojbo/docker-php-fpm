@@ -28,6 +28,14 @@ _get_groupname_by_gid() {
 }
 
 
+set_sudo() {
+	local username="${1}"
+	local debug="${2}"
+	log "info" "Set sudo for ${username}"
+	sed -i -e 's/\s*Defaults\s*secure_path\s*=/# Defaults secure_path=/' /etc/sudoers
+	echo "${username} ALL=NOPASSWD: ALL" >> /etc/sudoers
+}
+
 ###
 ### Change UID
 ###

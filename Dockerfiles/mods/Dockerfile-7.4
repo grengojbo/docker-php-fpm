@@ -747,6 +747,8 @@ RUN set -eux \
 	libzip4 \
 	# snmp \
 	ca-certificates \
+	&& apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y \
+	&& rm -fr /tmp/* /var/tmp/* \
 	&& rm -rf /var/lib/apt/lists/* \
 	\
 	&& update-ca-certificates
