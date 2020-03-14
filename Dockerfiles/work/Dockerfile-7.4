@@ -37,6 +37,7 @@ RUN set -eux \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -qq -y --no-install-recommends --no-install-suggests \
 	dirmngr \
 	gnupg \
+	wget \
 	\
 	&& echo "deb http://ftp.debian.org/debian buster-backports main" > /etc/apt/sources.list.d/backports.list \
 	&& curl -sS -L --fail "https://packages.blackfire.io/gpg.key" 2>/dev/null | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key add - \
@@ -110,7 +111,6 @@ RUN set -eux \
 	unzip \
 	vim \
 	w3m \
-	wget \
 	whois \
 	xz-utils \
 	yarn \
