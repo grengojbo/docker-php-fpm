@@ -378,50 +378,50 @@ RUN set -eux \
 	\
 	&& (rm -rf /usr/local/src/composer/cache/* || true) \
 	&& rm -rf /tmp/* \
-	&& (rm -rf /tmp/.* || true)
-
-
-###
-### Install Composer (PHP)
-###
-# RUN set -eux \
-# 	# -------------------- asgardcms --------------------
-# 	&& COMPOSER_HOME="/usr/local/src/composer" COMPOSER_MEMORY_LIMIT=-1 /usr/local/bin/composer global require  asgardcms/asgardcms-installer \
-# 	&& ln -s /usr/local/src/composer/vendor/asgardcms/asgardcms-installer/asgardcms /usr/local/bin/ \
-# 	\
-# 	# -------------------- codeception --------------------
-# 	&& COMPOSER_HOME="/usr/local/src/composer" COMPOSER_MEMORY_LIMIT=-1 /usr/local/bin/composer global require  codeception/codeception \
-# 	&& ln -s /usr/local/src/composer/vendor/codeception/codeception/codecept /usr/local/bin/ \
-# 	\
-# 	# -------------------- lumen --------------------
-# 	&& COMPOSER_HOME="/usr/local/src/composer" COMPOSER_MEMORY_LIMIT=-1 /usr/local/bin/composer global require  laravel/lumen-installer \
-# 	&& ln -s /usr/local/src/composer/vendor/laravel/lumen-installer/lumen /usr/local/bin/ \
-# 	\
-# 	# -------------------- photon --------------------
-# 	&& COMPOSER_HOME="/usr/local/src/composer" COMPOSER_MEMORY_LIMIT=-1 /usr/local/bin/composer global require  photoncms/installer \
-# 	&& ln -s /usr/local/src/composer/vendor/photoncms/installer/photon /usr/local/bin/ \
-# 	\
-# 	# -------------------- prestissimo --------------------
-# 	&& COMPOSER_HOME="/usr/local/src/composer" COMPOSER_MEMORY_LIMIT=-1 /usr/local/bin/composer global require  hirak/prestissimo \
-# 	\
-# 	\
-# 	&& rm -rf /tmp/* \
-# 	&& (rm -rf /tmp/.* || true) \
-# 	\
-# 	&& (find /usr/local/bin -type f -print0 | xargs -n1 -0 strip --strip-all -p 2>/dev/null || true) \
-# 	&& (find /usr/local/lib -type f -print0 | xargs -n1 -0 strip --strip-all -p 2>/dev/null || true) \
-# 	&& (find /usr/local/sbin -type f -print0 | xargs -n1 -0 strip --strip-all -p 2>/dev/null || true) \
-#
-#
-###
-### Install npm (Node)
-###
-#RUN set -eux \
-# -------------------- angular_cli --------------------
-# && su -c '. /opt/nvm/nvm.sh; npm install -g --force @angular/cli' devilbox \
-# \
-# -------------------- eslint --------------------
-&& su -c '. /opt/nvm/nvm.sh; npm install -g --force eslint' devilbox \
+	&& (rm -rf /tmp/.* || true) \
+	#
+	#
+	###
+	### Install Composer (PHP)
+	###
+	# RUN set -eux \
+	# 	# -------------------- asgardcms --------------------
+	# 	&& COMPOSER_HOME="/usr/local/src/composer" COMPOSER_MEMORY_LIMIT=-1 /usr/local/bin/composer global require  asgardcms/asgardcms-installer \
+	# 	&& ln -s /usr/local/src/composer/vendor/asgardcms/asgardcms-installer/asgardcms /usr/local/bin/ \
+	# 	\
+	# 	# -------------------- codeception --------------------
+	# 	&& COMPOSER_HOME="/usr/local/src/composer" COMPOSER_MEMORY_LIMIT=-1 /usr/local/bin/composer global require  codeception/codeception \
+	# 	&& ln -s /usr/local/src/composer/vendor/codeception/codeception/codecept /usr/local/bin/ \
+	# 	\
+	# 	# -------------------- lumen --------------------
+	# 	&& COMPOSER_HOME="/usr/local/src/composer" COMPOSER_MEMORY_LIMIT=-1 /usr/local/bin/composer global require  laravel/lumen-installer \
+	# 	&& ln -s /usr/local/src/composer/vendor/laravel/lumen-installer/lumen /usr/local/bin/ \
+	# 	\
+	# 	# -------------------- photon --------------------
+	# 	&& COMPOSER_HOME="/usr/local/src/composer" COMPOSER_MEMORY_LIMIT=-1 /usr/local/bin/composer global require  photoncms/installer \
+	# 	&& ln -s /usr/local/src/composer/vendor/photoncms/installer/photon /usr/local/bin/ \
+	# 	\
+	# 	# -------------------- prestissimo --------------------
+	# 	&& COMPOSER_HOME="/usr/local/src/composer" COMPOSER_MEMORY_LIMIT=-1 /usr/local/bin/composer global require  hirak/prestissimo \
+	# 	\
+	# 	\
+	# 	&& rm -rf /tmp/* \
+	# 	&& (rm -rf /tmp/.* || true) \
+	# 	\
+	# 	&& (find /usr/local/bin -type f -print0 | xargs -n1 -0 strip --strip-all -p 2>/dev/null || true) \
+	# 	&& (find /usr/local/lib -type f -print0 | xargs -n1 -0 strip --strip-all -p 2>/dev/null || true) \
+	# 	&& (find /usr/local/sbin -type f -print0 | xargs -n1 -0 strip --strip-all -p 2>/dev/null || true) \
+	#
+	#
+	###
+	### Install npm (Node)
+	###
+	#RUN set -eux \
+	# -------------------- angular_cli --------------------
+	# && su -c '. /opt/nvm/nvm.sh; npm install -g --force @angular/cli' devilbox \
+	# \
+	# -------------------- eslint --------------------
+	&& su -c '. /opt/nvm/nvm.sh; npm install -g --force eslint' devilbox \
 	\
 	# -------------------- grunt --------------------
 	# && su -c '. /opt/nvm/nvm.sh; npm install -g --force grunt' devilbox \
