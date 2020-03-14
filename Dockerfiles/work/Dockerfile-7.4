@@ -26,7 +26,7 @@ LABEL "org.opencontainers.image.description"="PHP-FPM 7.4-work"
 ### Envs
 ###
 ENV BASH_PROFILE=".bashrc"
-ENV LC_ALL=C
+# ENV LC_ALL=C
 
 ###
 ### Install Tools
@@ -101,8 +101,8 @@ RUN set -eux \
 	postgresql-client-12 \
 	redis-tools \
 	rsync \
-	rubygems \
-	ruby-dev \
+	# rubygems \
+	# ruby-dev \
 	shellcheck \
 	silversearcher-ag \
 	# subversion \
@@ -135,6 +135,7 @@ RUN set -eux \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update -qq \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -qq -y --no-install-recommends --no-install-suggests \
 	libpython-dev \
+	python \
 	&& DEBIAN_FRONTEND=noninteractive apt-get purge -qq -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
 	&& apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y \
 	&& rm -fr /tmp/* /var/tmp/* \
