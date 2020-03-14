@@ -95,6 +95,7 @@ VOLUME /var/log/php
 ENV LC_ALL=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US.UTF-8
+ENV COMPOSER_MEMORY_LIMIT=-1
 
 ###
 ### Ports
@@ -106,5 +107,6 @@ RUN chown -R ${MY_USER}:${MY_GROUP} /app
 ###
 ### Entrypoint
 ###
+# CMD [ "php-fpm", "-F", "--pid", "/opt/bitnami/php/tmp/php-fpm.pid", "-y", "/opt/bitnami/php/etc/php-fpm.conf" ]
 CMD ["/usr/local/sbin/php-fpm"]
 ENTRYPOINT ["/docker-entrypoint.sh"]

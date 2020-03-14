@@ -68,18 +68,21 @@ help:
 	@echo "ARGS                          Can be added to all build-* and rebuild-* targets"
 	@echo "                              to supply additional docker build options."
 
-connect-base: ## Connect to BASE container
-	@echo "Connect to BASE container..."
+connect-base: ## Connect to base container
+	@echo "Connect to base container..."
 	docker run --rm -v /home/jbo/src/gitops/laravel/app:/app -it $(IMAGE):$(VERSION)-base /bin/bash
 
-connect-mods:
+connect-mods:## Connection to mods container
+	@echo "Connect to mods container..."
 	docker run --rm -v /home/jbo/src/gitops/laravel/app:/app -it $(IMAGE):$(VERSION)-mods /bin/bash
 
-connect-dev:
-	docker run --rm -v /home/jbo/src/gitops/laravel/app:/app -it $(IMAGE):$(VERSION)-work /bin/bash
-
-connect-prod:
+connect-prod: ## Connection to prod container
+	@echo "Connect to prod container..."
 	docker run --rm -v /home/jbo/src/gitops/laravel/app:/app -it $(IMAGE):$(VERSION)-prod /bin/bash
+
+connect-work: ## Connection to work container
+	@echo "Connect to work container..."
+	docker run --rm -v /home/jbo/src/gitops/laravel/app:/app -it $(IMAGE):$(VERSION)-work /bin/bash
 
 push-base: ## Push base image by specified version
 	@echo "Push base image by specified version $(IMAGE):$(VERSION)-base ..."
@@ -89,9 +92,13 @@ push-mods: ## Push mods image by specified version
 	@echo "Push mods image by specified version $(IMAGE):$(VERSION)-mods ..."
 	@docker push $(IMAGE):$(VERSION)-mods
 
-push-prod: ## Push mods image by specified version
+push-prod: ## Push prod image by specified version
 	@echo "Push prod image by specified version $(IMAGE):$(VERSION)-prod ..."
 	@docker push $(IMAGE):$(VERSION)-prod
+
+push-work: ## Push work image by specified version
+	@echo "Push work image by specified version $(IMAGE):$(VERSION)-work ..."
+	@docker push $(IMAGE):$(VERSION)-work
 
 # -------------------------------------------------------------------------------------------------
 #  GENERATE TARGETS
