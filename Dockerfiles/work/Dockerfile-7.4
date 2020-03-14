@@ -26,7 +26,7 @@ LABEL "org.opencontainers.image.description"="PHP-FPM 7.4-work"
 ### Envs
 ###
 ENV BASH_PROFILE=".bashrc"
-
+ENV LC_ALL=C
 
 ###
 ### Install Tools
@@ -38,6 +38,7 @@ RUN set -eux \
 	dirmngr \
 	gnupg \
 	wget \
+	sudo \
 	\
 	&& echo "deb http://ftp.debian.org/debian buster-backports main" > /etc/apt/sources.list.d/backports.list \
 	&& curl -sS -L --fail "https://packages.blackfire.io/gpg.key" 2>/dev/null | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key add - \
@@ -45,8 +46,8 @@ RUN set -eux \
 	&& APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv A1715D88E1DF1F24 \
 	&& echo "deb http://ppa.launchpad.net/git-core/ppa/ubuntu artful main" > /etc/apt/sources.list.d/git.list \
 	\
-	&& wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add - \
-	&& echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main" | sudo tee /etc/apt/sources.list.d/mongodb-org.list \
+	&& wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | apt-key add - \
+	&& echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main" | tee /etc/apt/sources.list.d/mongodb-org.list \
 	# && APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4 \
 	# && echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main" > /etc/apt/sources.list.d/mongo.list \
 	\
@@ -104,8 +105,7 @@ RUN set -eux \
 	ruby-dev \
 	shellcheck \
 	silversearcher-ag \
-	subversion \
-	sudo \
+	# subversion \
 	tig \
 	tree \
 	unzip \
