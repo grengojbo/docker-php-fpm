@@ -21,6 +21,8 @@ LABEL "org.opencontainers.image.ref.name"="7.4-prod"
 LABEL "org.opencontainers.image.title"="PHP-FPM 7.4-prod"
 LABEL "org.opencontainers.image.description"="PHP-FPM 7.4-prod"
 
+RUN mkdir -p /app
+WORKDIR /app
 
 ###
 ### Install
@@ -90,11 +92,13 @@ VOLUME /var/log/php
 # VOLUME /var/mail
 
 
+
 ###
 ### Ports
 ###
 EXPOSE 9000
 
+RUN chown -R ${MY_USER}:${MY_GROUP} /app
 
 ###
 ### Entrypoint
