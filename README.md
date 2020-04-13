@@ -21,6 +21,12 @@ versions and packed with different types of integrated PHP modules. It also solv
 | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | <a href="https://hub.docker.com/r/devilbox/php-fpm"><img height="82px" src="http://dockeri.co/image/devilbox/php-fpm" /></a> | <a href="https://github.com/cytopia/devilbox" ><img height="82px" src="https://raw.githubusercontent.com/devilbox/artwork/master/submissions_banner/cytopia/01/png/banner_256_trans.png" /></a> |
 
+## Build Images
+
+```
+make build-mods VERSION=7.4
+```
+
 #### Base Images
 
 Have a look at the following Devilbox base images for which no official versions exist yet, but are required to serve as a foundation for this repository:
