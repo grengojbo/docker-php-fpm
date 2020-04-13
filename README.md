@@ -24,7 +24,30 @@ versions and packed with different types of integrated PHP modules. It also solv
 ## Build Images
 
 ```
+make build-base VERSION=7.4
+make test-base VERSION=7.4
+make push-base VERSION=7.4
+
 make build-mods VERSION=7.4
+make test-mods VERSION=7.4
+make push-mods VERSION=7.4
+
+make build-prod VERSION=7.4
+make test-prod VERSION=7.4
+make push-prod VERSION=7.4
+
+make build-work VERSION=7.4
+make test-work VERSION=7.4
+make push-work VERSION=7.4
+```
+
+Подключаемся к образам
+
+```
+make connect-mods VERSION=7.4
+
+php -m 
+php -i
 ```
 
 #### Base Images

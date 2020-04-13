@@ -123,17 +123,17 @@ RUN set -eux \
 	### Install custom software
 	###
 	# RUN set -eux \
-	# 	echo	"-------------------- pip --------------------" \
+	# echo	"-------------------- pip --------------------" \
 	# 	&& DEBIAN_FRONTEND=noninteractive apt-get update -qq \
 	# 	&& DEBIAN_FRONTEND=noninteractive apt-get install -qq -y --no-install-recommends --no-install-suggests \
-	# 	libpython-dev \
-	# 	python \
-	# 	&& DEBIAN_FRONTEND=noninteractive apt-get purge -qq -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-	# 	&& apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y \
-	# 	&& rm -fr /tmp/* /var/tmp/* \
-	# 	&& rm -rf /var/lib/apt/lists/* \
-	# 	\
-	# 	&& curl -sS -L --fail https://bootstrap.pypa.io/get-pip.py | python \
+	libpython-dev \
+	python \
+	#	&& DEBIAN_FRONTEND=noninteractive apt-get purge -qq -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+	##	&& apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y \
+	#	&& rm -fr /tmp/* /var/tmp/* \
+	#	&& rm -rf /var/lib/apt/lists/* \
+	\
+	&& curl -sS -L --fail https://bootstrap.pypa.io/get-pip.py | python \
 	\
 	\
 	# -------------------- nvm --------------------
@@ -499,24 +499,24 @@ RUN set -eux \
 ###
 ### Install pip (Python) packages
 ###
-# RUN set -eux \
-# 	# -------------------- ansible --------------------
-# 	&& pip install --no-cache-dir --force-reinstall ansible \
-# 	\
-# 	# -------------------- yamllint --------------------
-# 	&& pip install --no-cache-dir --force-reinstall yamllint \
-# 	\
-# 	# -------------------- yq --------------------
-# 	&& pip install --no-cache-dir --force-reinstall yq \
-# 	\
-# 	\
-# 	&& rm -rf /root/.cache/pip \
-# 	&& rm -rf /tmp/* \
-# 	&& (rm -rf /tmp/.* || true) \
-# 	\
-# 	&& (find /usr/local/bin -type f -print0 | xargs -n1 -0 strip --strip-all -p 2>/dev/null || true) \
-# 	&& (find /usr/local/lib -type f -print0 | xargs -n1 -0 strip --strip-all -p 2>/dev/null || true) \
-# 	&& (find /usr/local/sbin -type f -print0 | xargs -n1 -0 strip --strip-all -p 2>/dev/null || true)
+RUN set -eux \
+	# -------------------- ansible --------------------
+	&& pip install --no-cache-dir --force-reinstall ansible \
+	\
+	# -------------------- yamllint --------------------
+	&& pip install --no-cache-dir --force-reinstall yamllint \
+	\
+	# -------------------- yq --------------------
+	&& pip install --no-cache-dir --force-reinstall yq \
+	\
+	\
+	&& rm -rf /root/.cache/pip \
+	&& rm -rf /tmp/* \
+	&& (rm -rf /tmp/.* || true) \
+	\
+	&& (find /usr/local/bin -type f -print0 | xargs -n1 -0 strip --strip-all -p 2>/dev/null || true) \
+	&& (find /usr/local/lib -type f -print0 | xargs -n1 -0 strip --strip-all -p 2>/dev/null || true) \
+	&& (find /usr/local/sbin -type f -print0 | xargs -n1 -0 strip --strip-all -p 2>/dev/null || true)
 
 
 ###
